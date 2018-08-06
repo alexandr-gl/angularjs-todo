@@ -1,0 +1,22 @@
+<div>
+   <md-toolbar>
+       <div class="md-toolbar-tools">
+           <!--<h6 ng-repeat="task in vm.tasks">{{task}}</h6>-->
+           <h2 md-truncate flex>Todo list</h2>
+           <md-button ng-click="vm.showAdd()">
+               Add
+           </md-button>
+               <md-button ng-click="vm.showAll()">
+                All
+               </md-button>
+           <md-button ng-click="vm.showDone()">
+               Done
+           </md-button>
+
+           <md-button ng-click="vm.showUnDone()">
+               Undone
+           </md-button>
+       </div>
+   </md-toolbar>
+</div>
+<tasks></tasks>

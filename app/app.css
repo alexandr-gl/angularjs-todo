@@ -1,0 +1,178 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+body {
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.task-list__lisst-item {
+
+}
+
+.task-list__lisst-item_card {
+  max-width: 800px !important;
+  min-width: 770px !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px 0 30px;
+}
+
+md-checkbox {
+  margin-top: 15px;
+}
+
+md-checkbox .md-icon {
+  transform: scale(2);
+}
+
+.md-raised.edit {
+  height: 40px;
+  margin-right: 18px;
+  background-color: #00cd6f;
+  color: white;
+  box-shadow: none !important;
+  margin-top: 3px !important;
+}
+
+.md-raised.edit:hover {
+  background-color: rgb(255, 64, 129) !important;
+}
+
+.add-task-input {
+  max-width: 800px;
+  min-width: 770px;
+  margin-left: 23px;
+}
+
+.add-task-input md-input-container {
+  margin: 0;
+  height: 87px;
+  background-color: #b3d4fc;
+}
+
+.add-task-input md-input-container input{
+  border-bottom: none;
+  height: 50px;
+  font-size: 40px;
+  height: 87px;
+  color: white;
+  font-weight: bold;
+}
+
+.add-task-input .md-char-counter {
+  display: none;
+}
+
+.pagination-list {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.pagination-list md-list-item {
+  flex: 0 1 auto !important;
+  padding: 0 !important;
+}
+
+.pagination-list md-list-item button.md-button.md-raised {
+  background-color: #ff5288 !important;
+  color: white !important;
+  width: 50px !important;
+  font-weight: bold;
+}
+
+.container__add-task-input.ng-enter {
+  transition:all ease-in 0.5s;
+  height: 0px;
+}
+
+.container__add-task-input.ng-enter.ng-enter-active {
+  /*transition:height ease-in 0.5s;*/
+  height: 99px;
+}
+
+.container__add-task-input.ng-leave {
+  transition:all ease-out 0.5s;
+  height: 99px;
+}
+
+.container__add-task-input.ng-leave.ng-leave-active {
+  /*transition:all ease-in 0.5s;*/
+  height: 0px;
+}
+
+.task-list__lisst-item.ng-enter,
+.task-list__lisst-item.ng-leave{
+  transition:all linear 1s;
+}
+
+.task-list__lisst-item.ng-leave {
+  top: 0;
+  opacity: 1;
+}
+
+.task-list__lisst-item.ng-leave.ng-leave-active {
+  top: 200px;
+  opacity: 0;
+}
+
+.task-list__lisst-item.ng-enter{
+  opacity:0;
+  top: -500px;
+}
+
+.task-list__lisst-item.ng-enter.ng-enter-active {
+  opacity:1;
+  top: 0px;
+}
+
+.pagination-list md-list-item button.md-raised.md-button.scroll-pages {
+  background-color: #00cd6f !important;
+  color: white !important;
+  width: 50px !important;
+  font-weight: bold;
+}
+
+.pagination-list md-list-item button.md-raised.md-button.scroll-pages md-icon {
+  color: white;
+}
+
+.md-raised.del.edit {
+  background-color: crimson;
+  width: 40px !important;
+  min-width: 40px !important;
+  margin-right: 0;
+}
+
+/*.md-raised.del.edit md-icon {*/
+  /*color: white !important;*/
+/*}*/

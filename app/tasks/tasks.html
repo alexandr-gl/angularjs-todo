@@ -1,0 +1,40 @@
+<md-content ng-controller="tasksController as tasksController" class="content">
+    <div class="container__add-task-input" ng-if="tasksController.show">
+        <md-card class="add-task-input">
+            <md-input-container>
+                <input name="newTask1" type="text" required md-maxlength="10" aria-label="Your Field Lable name"
+                       ng-keydown="$event.keyCode === 13 && addCtrl(newTaskValue)" ng-model="newTaskValue">
+            </md-input-container>
+        </md-card>
+    </div>
+    <md-list class="task-list">
+        <md-list-item ng-repeat="task in tasksArr" ng-model="tasksArr" class="task-list__lisst-item kek">
+            <md-card class="task-list__lisst-item_card">
+                <h1>{{task.task}}</h1>
+                <div>
+                    <md-button class="md-raised edit del" ng-click="delete(task.id)">
+                        <md-icon md-font-icon="delete">delete</md-icon>
+                    </md-button>
+                    <md-button class="md-raised edit">Edit</md-button>
+                    <md-checkbox ng-model="task.status" class="list-item-card_checkbox" aria-label="kek"></md-checkbox>
+                </div>
+            </md-card>
+        </md-list-item>
+    </md-list>
+    <md-list class="pagination-list" ng-if="pageButtons.length > 1">
+        <md-list-item ng-if="pageButtons[0].id !== 0">
+            <md-button class="scroll-pages md-raised" ng-click="scrollPageBtns(pageButtons[0].id)">
+                <md-icon md-font-icon="keyboard_arrow_left">keyboard_arrow_left</md-icon>
+            </md-button>
+        </md-list-item>
+        <md-list-item ng-repeat="pageBtn in pageButtons" ng-model="pageButtons">
+            <md-button class="md-raised" ng-click="cutArray(pageBtn.id, allTasks)">{{pageBtn.text}}</md-button>
+        </md-list-item>
+        <md-list-item>
+            <md-button class="scroll-pages md-raised" ng-if="maxPage" ng-click="scrollPageBtns(pageButtons[pageButtons.length - 1].id)">
+                <md-icon md-font-icon="keyboard_arrow_right">keyboard_arrow_right</md-icon>
+            </md-button>
+        </md-list-item>
+    </md-list>
+</md-content>
+<!--ng-if="pageButtons.length > 1"-->
