@@ -8,7 +8,7 @@ angular.module('myApp.tasks', [])
         });
     }])
 
-    .controller('tasksController', ['$scope', '$rootScope', function($scope, $rootScope) {
+    .controller('tasksController', ['$scope', '$rootScope', '$mdDialog', function($scope, $rootScope, $mdDialog) {
         var vm = this;
         vm.show = false;
         $scope.newTaskValue = '';
@@ -83,6 +83,28 @@ angular.module('myApp.tasks', [])
             $scope.pageButtons = pageBtnsArr[0];
             $scope.maxPage = pageBtnsArr[1];
         }
+
+        $scope.showEdit = function(ev) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            console.log('EVENT', ev);
+            var confirm = $mdDialog.prompt()
+                .title('What would you name your dog?')
+                .textContent('Bowser is a common name.')
+                .placeholder('Dog name')
+                .ariaLabel('Dog name')
+                .initialValue('Buddy')
+                .targetEvent(ev)
+                .required(true)
+                .ok('Okay!')
+                .cancel('I\'m a cat person');
+
+            $mdDialog.show(confirm).then(function(result) {
+                $scope.status = 'You decided to name your dog ' + result + '.';
+            }, function() {
+                $scope.status = 'You didn\'t name your dog.';
+            });
+        };
+
     }]);
 
     function cutArr(pageId, allTasks) {
