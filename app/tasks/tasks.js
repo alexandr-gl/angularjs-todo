@@ -48,7 +48,10 @@ angular.module('myApp.tasks', [])
             $scope.maxPage = pageBtnArr[1];
         }
         $rootScope.$on('rootScope:filter', function (event, data) {
-            if(data === undefined) {$scope.tasksArr = $scope.allAllTasks; return;}
+            if(data === undefined) {
+                $scope.tasksArr = cutArr(undefined, $scope.allAllTasks);
+                return;
+            }
             $scope.allTasks = $scope.allAllTasks.filter( function (item) {
                 return item.status === data;
             });
