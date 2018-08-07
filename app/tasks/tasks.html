@@ -12,16 +12,16 @@
             <md-card class="task-list__lisst-item_card">
                 <h1>{{task.task}}</h1>
                 <div>
-                    <md-button class="md-raised edit del" ng-click="delete(task.id)">
+                    <md-button class="md-raised edit del" ng-click="delete(task._id)">
                         <md-icon md-font-icon="delete">delete</md-icon>
                     </md-button>
                     <md-button class="md-raised edit" ng-click="showEdit($event, task.id)">Edit</md-button>
-                    <md-checkbox ng-model="task.status" class="list-item-card_checkbox" aria-label="kek"></md-checkbox>
+                    <md-checkbox ng-model="task.status" ng-click="statusChange(task)" class="list-item-card_checkbox" aria-label="kek"></md-checkbox>
                 </div>
             </md-card>
         </md-list-item>
     </md-list>
-    <md-list class="pagination-list" ng-if="pageButtons.length > 1">
+    <md-list class="pagination-list" ng-if="allTasks.length > 5">
         <md-list-item ng-if="pageButtons[0].id !== 0">
             <md-button class="scroll-pages md-raised" ng-click="scrollPageBtns(pageButtons[0].id)">
                 <md-icon md-font-icon="keyboard_arrow_left">keyboard_arrow_left</md-icon>
