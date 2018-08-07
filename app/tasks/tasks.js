@@ -18,27 +18,28 @@ angular.module('myApp.tasks', [])
             {id: 1, task: 'Learn ReactJS', status: false},
             {id: 2, task: 'Learn VueJS', status: false},
             {id: 3, task: 'Learn angular2+', status: true},
-            // {id: 4, task: 'Learn angular2+', status: true},
-            // {id: 5, task: 'Learn angular2+', status: false},
-            // {id: 6, task: 'Learn angular2+', status: true},
-            // {id: 7, task: 'Learn angular2+', status: true},
-            // {id: 8, task: 'Learn angular2+', status: false},
-            // {id: 9, task: 'Learn angular2+', status: true},
-            // {id: 10, task: 'Learn angular2+', status: true},
-            // {id: 11, task: 'Learn angular2+', status: false},
-            // {id: 12, task: 'Learn angular2+', status: true},
-            // {id: 13, task: 'Learn angular2+', status: true},
-            // {id: 14, task: 'Learn angular2+', status: false},
-            // {id: 15, task: 'Learn angular2+', status: true},
-            // {id: 16, task: 'Learn angular2+', status: true},
-            // {id: 17, task: 'Learn angular2+', status: false},
-            // {id: 18, task: 'Learn angular2+', status: true},
-            // {id: 19, task: 'Learn angular2+', status: true},
-            // {id: 20, task: 'Learn angular2+', status: false},
-            // {id: 21, task: 'Learn angular2+', status: true},
-            // {id: 22, task: 'Learn angular2+', status: true},
-            // {id: 23, task: 'Learn angular2+', status: false},
-            // {id: 24, task: 'Learn angular2+', status: true},
+            {id: 4, task: 'Learn angular2+', status: true},
+            {id: 5, task: 'Learn angular2+', status: false},
+            {id: 6, task: 'Learn angular2+', status: true},
+            {id: 7, task: 'Learn angular2+', status: true},
+            {id: 8, task: 'Learn angular2+', status: false},
+            {id: 9, task: 'Learn angular2+', status: true},
+            {id: 10, task: 'Learn angular2+', status: true},
+            {id: 11, task: 'Learn angular2+', status: false},
+            {id: 12, task: 'Learn angular2+', status: true},
+            {id: 13, task: 'Learn angular2+', status: true},
+            {id: 14, task: 'Learn angular2+', status: false},
+            {id: 15, task: 'Learn angular2+', status: true},
+            {id: 16, task: 'Learn angular2+', status: true},
+            {id: 17, task: 'Learn angular2+', status: false},
+            {id: 18, task: 'Learn angular2+', status: true},
+            {id: 19, task: 'Learn angular2+', status: true},
+            {id: 20, task: 'Learn angular2+', status: false},
+            {id: 21, task: 'Learn angular2+', status: true},
+            {id: 22, task: 'Learn angular2+', status: true},
+            {id: 23, task: 'Learn angular2+', status: false},
+            {id: 24, task: 'Learn angular2+', status: true},
+            {id: 24, task: 'Learn angular2+', status: false}
         ];
         $scope.allTasks = $scope.allAllTasks;
         $scope.scrollPageBtns = function(pageId) {
@@ -54,12 +55,12 @@ angular.module('myApp.tasks', [])
             $scope.tasksArr = cutArr(undefined, $scope.allTasks);
         });
         $scope.delete = function(id) {
-            let idOfDel = $scope.tasksArr.filter(function (elem, index) {
+            let idOfDel;
+            $scope.tasksArr.forEach(function (elem, index) {
                 if(elem.id === id) {
-                    return index;
+                    $scope.tasksArr.splice(index, 1);
                 }
             });
-            $scope.tasksArr.splice(idOfDel, 1);
         }
         $scope.tasksArr = cutArr(undefined, $scope.allTasks);
         $scope.pageButtons = createPagesBtn($scope.allTasks.length, 1)[0];
@@ -84,7 +85,7 @@ angular.module('myApp.tasks', [])
             $scope.maxPage = pageBtnsArr[1];
         }
 
-        $scope.showEdit = function(ev) {
+        $scope.showEdit = function(ev, id) {
             // Appending dialog to document.body to cover sidenav in docs app
             console.log('EVENT', ev);
             var confirm = $mdDialog.prompt()
@@ -99,9 +100,11 @@ angular.module('myApp.tasks', [])
                 .cancel('I\'m a cat person');
 
             $mdDialog.show(confirm).then(function(result) {
-                $scope.status = 'You decided to name your dog ' + result + '.';
-            }, function() {
-                $scope.status = 'You didn\'t name your dog.';
+                $scope.tasksArr.forEach(function (elem, index) {
+                    if(elem.id === id) {
+                        $scope.tasksArr[index].task = result;
+                    }
+                });
             });
         };
 

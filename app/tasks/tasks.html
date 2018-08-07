@@ -15,7 +15,7 @@
                     <md-button class="md-raised edit del" ng-click="delete(task.id)">
                         <md-icon md-font-icon="delete">delete</md-icon>
                     </md-button>
-                    <md-button class="md-raised edit" ng-click="showEdit($event)">Edit</md-button>
+                    <md-button class="md-raised edit" ng-click="showEdit($event, task.id)">Edit</md-button>
                     <md-checkbox ng-model="task.status" class="list-item-card_checkbox" aria-label="kek"></md-checkbox>
                 </div>
             </md-card>
