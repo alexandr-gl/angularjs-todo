@@ -26,26 +26,21 @@ angular.module('myApp.navbar', ['myApp.tasks'])
     }
     navbarController.$inject = ['$rootScope']
     function navbarController($rootScope) {
-        console.log('LOL KEK CHEBUREK')
         var vm = this;
         vm.tasks = ['Learn angularjs', 'Learn material'];
         vm.show = false;
         vm.showAdd = function() {
             // tasksController.show = !tasksController.show;
-            console.log('WE ARE IN showAdd');
             vm.show = !vm.show;
             $rootScope.$broadcast('rootScope:broadcast', vm.show);
         };
         vm.showDone = function () {
             $rootScope.$broadcast('rootScope:filter', true);
-            console.log('We are in filter done');
         };
         vm.showUnDone = function () {
             $rootScope.$broadcast('rootScope:filter', false);
-            console.log('We are in filter Undone');
         };
         vm.showAll = function () {
             $rootScope.$broadcast('rootScope:filter', undefined);
-            console.log('We are in filter Undone');
         };
     };

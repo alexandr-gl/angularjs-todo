@@ -56,7 +56,7 @@ router.delete('/:id', function(req, res, next){
 // });
 
 router.put('/:id', function (req, res) {
-    console.log('>>>> CHANGE STATE ON SERVER <<<<', req.body, req.params.id);
+    console.log('>>>> CHANGE STATE ON SERVER <<<<');
     modelTask.update({_id: req.body._id}, {$set: {status: req.body.status, task: req.body.task}}, function (err, num) {
             if (err) {
                 return res.send({error: 'Task not update'});

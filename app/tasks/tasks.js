@@ -55,6 +55,7 @@ angular.module('myApp.tasks', [])
                             $scope.response=response.data;
 
                         });
+                    $scope.newTaskValue = null;
                 };
                 $scope.cutArray = function(pageId, allTasks) {
                     $scope.tasksArr = cutArr(pageId, allTasks);
@@ -93,7 +94,6 @@ angular.module('myApp.tasks', [])
 
     function cutArr(pageId, allTasks) {
         let tasksArr;
-        console.log('allTasks', allTasks);
         if(pageId === undefined && allTasks !== undefined)
         {
             tasksArr = allTasks.slice(0, 5);
@@ -108,33 +108,20 @@ angular.module('myApp.tasks', [])
         let pageButtons = [];
         pageButtons.length = 0;
         let state = true;
-        console.log('PAGE ID', pageId);
         if(pageId === 0) {pageId = 1;}
-        if(length % 5 === 0)
-        {
-            let amountPages = length / 5;
-            for(let i = pageId - 1; i <= pageId + 1; i++) {
-                if(i > amountPages - 1) {state = false; break;}
-                if(i === amountPages - 1) {state = false;}
-                pageButtons.push({id: i, text: `${i+1}`});
+        let amountPages = Math.ceil(length / 5);
+        if(pageId === amountPages - 2 || amountPages < 3) {state = false;}
+        for(let i = pageId - 1; i <= pageId + 1; i++) {
+            if(i === amountPages && amountPages === 2) {
+                break;
             }
-        }
-        else {
-            let amountPages = Math.ceil(length / 5);
-            for(let i = pageId - 1; i <= pageId + 1; i++) {
-                if(i > amountPages - 1) {
-                    state = false;
-                    pageButtons.unshift({id: i-2, text: `${i-2}`});
-                    break;
-                }
-                if(i === amountPages - 1) {
-                    state = false;
-                    console.log('we are here');
-                }
-                pageButtons.push({id: i, text: `${i+1}`});
+            if(i === amountPages) {
+                pageButtons.unshift({id: i - 2, text: `${i - 2}`});
+                state = false;
+                break;
             }
+            pageButtons.push({id: i, text: `${i+1}`});
         }
-        console.log('buttons', pageButtons);
         return [pageButtons, state];
     }
 
